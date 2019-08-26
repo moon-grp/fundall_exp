@@ -1,31 +1,76 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app style=" background: #FCFBFC;">
+    <v-app-bar 
+      color="#FCFBFC"
+      position: absolute
+      elevate-on-scroll
+      app
+    >
+    <v-toolbar-title class="logo">  
+  <v-img
+          :src="require('../src/assets/logo.png')"
+          contain
+         
+        ></v-img>
+
+    </v-toolbar-title>
+            
+   
+      <v-spacer></v-spacer>
+      <v-btn
+      text
+      rounded
+      class="custom-btn"
+      >
+      <span >Log in</span>
+      </v-btn>
+      <v-btn
+      text
+      rounded
+      class="custom-btn"
+      >
+        <span >Sign Up</span>
+      </v-btn>
+    </v-app-bar>
+
+    <v-content>
+      <router-view></router-view>
+    </v-content>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
+<script>
+import HelloWorld from './components/HelloWorld';
+
+
+export default {
+  name: 'App',
+  components: {
+    HelloWorld,
+  },
+  data: () => ({
+    //
+  }),
+};
+</script>
+
+
+<style scoped>
+.logo{
+ margin-left: 20px;
+ margin-top: 50px;
+ margin-bottom: 50px;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.custom-btn::before {
+    color: transparent
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.custom-btn:hover {
+    background-color:#4CE895;
+}
+
+.bg_color{
+  background-color: red;
 }
 </style>
