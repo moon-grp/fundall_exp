@@ -43,28 +43,43 @@
       class="pa-12"
       fluid
     >
+     <v-form ref="form">
     <v-row>
+      
    <v-col sm="12" md="6">
+
           <v-text-field
+             ref="firstname"
+            v-model="firstname"
             color="#4DE897"
             label="First Name"
             outlined
+            required
+             :rules="[() => !!firstname || 'firstname is required!!']"
           ></v-text-field>
         </v-col>
          <v-col  sm="12" md="6">
           <v-text-field
+             ref="lastname"
+            v-model="lastname"
             color="#4DE897"
             label="Last Name"
             outlined
+            required
+             :rules="[() => !!lastname || 'lastname is required!!']"
           ></v-text-field>
         </v-col>
     </v-row>
     <v-row>
       <v-col cols="12" >
           <v-text-field
+             ref="email"
+            v-model="email"
             color="#4DE897"
             label="E-mail Address"
             outlined
+            required
+             :rules="[() => !!email || 'email is required!!']"
           ></v-text-field>
         </v-col>
     </v-row>
@@ -72,9 +87,13 @@
     <v-row>
       <v-col cols="12" >
           <v-text-field
+             ref="password"
+            v-model="password"
+            required
             color="#4DE897"
             label="Enter Password"
             outlined
+             :rules="[() => !!password || 'password is required!!']"
              :type="show4 ? 'text' : 'password'"
           ></v-text-field>
         </v-col>
@@ -82,9 +101,12 @@
      <v-row>
       <v-col cols="12" >
           <v-text-field
+             ref="confirmpassword"
+            v-model="confirmpassword"
             color="#4DE897"
             label="Confirm Password"
             outlined
+             :rules="[() => !!confirmpassword || 'password is required!!']"
              :type="show4 ? 'text' : 'password'"
           ></v-text-field>
         </v-col>
@@ -92,10 +114,14 @@
      <v-row>
        <v-col cols="12">
          <div>
-          <v-btn block large color="#4DE897">SIGN UP</v-btn>
+          <v-btn block large color="#4DE897"   @click="onsubmit">SIGN UP</v-btn>
+        
          </div>
+         
        </v-col>
+      
      </v-row>
+     </v-form>
      <v-row
       align="center"
              justify="center">
@@ -124,8 +150,54 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-    name:'Signup'
+    name:'Signup',
+    data(){
+      return{
+         valid: true,
+        firstname:'',
+        lastname:'',
+        password:'',
+        confirmpassword:'',
+        email:''
+      }
+    },
+      methods:{
+        onsubmit(){
+      if (this.$refs.form.validate()) {
+            this.$refs.form.resetValidation()
+                      axios({
+  method: 'post',
+  header:{
+'Accept':'application/json'
+  },
+  url: 'https://test.fundall.io/api/v1/register',
+  data: {
+        'firstname':this.firstname,
+        'lastname':this.lastname,
+        'email':this.email,
+        'password':this.password,
+        'password_confirmation':this.confirmpassword
+  }
+}).then(
+  res=>{
+    console.log(res.data)
+    
+  }
+)
+.catch(
+  err=>{
+    console.log(err)
+    this.alert=true
+  }
+)
+           
+            this.username=""
+            this.password=''
+        }
+        },
+    },
     
 }
 </script>
