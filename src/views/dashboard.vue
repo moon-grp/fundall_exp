@@ -26,7 +26,7 @@
                 <h3>Target Monthly Expense</h3>
             </v-row>
              <v-row  class="my-1">
-                <h3>#500 000</h3>
+                <h3>₦ {{this.monthly_expense}}</h3>
             </v-row>
              <v-row  class="my-3">
                 <v-progress-linear  color="#4DE897 " height="15" value="10"></v-progress-linear>
@@ -74,6 +74,7 @@
             <v-row class="mt-4">
       <v-col cols="12">
           <v-text-field
+            v-model="monthly_expense"
             color="#4DE897 "
             label="Target Monthly Expense"
             outlined
@@ -183,6 +184,11 @@
 <script>
 export default {
     name:'dashboard',
+    data(){
+      return{
+          monthly_expense:""
+      }
+    },
      data: vm => ({
       date: new Date().toISOString().substr(0, 10),
       dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
@@ -213,6 +219,30 @@ export default {
 
         const [month, day, year] = date.split('/')
         return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+      },
+      mounted() {
+            axios({
+  method: 'post',
+  header:{
+'Accept':'application/json'
+  },
+  url: 'https://test.fundall.io/api/v1/login',
+  data: {
+    "email": this.username,
+	"password": this.password
+  }
+}).then(
+  res=>{
+    console.log(res.data)
+     this.$router.push('/dashboard')
+  }
+)
+.catch(
+  err=>{
+    console.log(err)
+    this.alert=true
+  }
+)
       },
     },
     

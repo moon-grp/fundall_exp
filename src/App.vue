@@ -10,6 +10,7 @@
   <v-img
           :src="require('../src/assets/logo.png')"
           contain
+          
          
         ></v-img>
 
@@ -17,15 +18,28 @@
             
    
       <v-spacer></v-spacer>
-      <v-btn
+
+        <v-btn
       text
       rounded
       class="custom-btn"
+      to='/dashboard'
       >
-      <span >Log in</span>
+        <span >Dashboard</span>
       </v-btn>
+
       <v-btn
       text
+      to='/signin'
+      rounded
+      class="custom-btn"
+      >
+      <span >Sign in</span>
+      </v-btn>
+
+      <v-btn
+      text
+      to='/signup'
       rounded
       class="custom-btn"
       >
