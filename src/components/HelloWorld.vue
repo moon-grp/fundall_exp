@@ -15,24 +15,11 @@
 
       <v-flex >
         <h1 class="display-2 font-weight-bold mb-3">
-          Fundall Expence Tracker
+         Expence Tracker mini Design
         </h1>
       </v-flex>
 
-      <v-flex
-        mb-5
-        xs12
-      >
-        <h2 class="headline font-weight-bold mb-7">Mini Project Frontend</h2>
-      </v-flex>
-
-      <v-flex
-        xs12
-        mb-5
-      >
-        <h2 class="headline font-weight-bold mb-3">By Olumidemm@gmail.com</h2>
-
-      </v-flex>
+    
 
     </v-layout>
   </v-container>

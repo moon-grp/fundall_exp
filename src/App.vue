@@ -7,12 +7,14 @@
       app
     >
     <v-toolbar-title class="logo">  
+      <router-link to='/'>
   <v-img
-          :src="require('../src/assets/logo.png')"
+          :src="require('../src/assets/new.png')"
           contain
           
          
         ></v-img>
+      </router-link>
 
     </v-toolbar-title>
             
